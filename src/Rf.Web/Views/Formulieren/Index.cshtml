@@ -1,0 +1,53 @@
+﻿@model Rf.Web.ViewModel.FormulierIndexViewModel
+<h2>Gerapporteerde Formulieren</h2>
+<div class="widget widget-table">
+    <div class="widget-header">
+        <h3>
+            <i class="fa fa-table"></i>
+            Formulieren
+        </h3>
+    </div>
+    <div class="widget-content">
+        <table class="table table-sorting table-striped table-hover datatable dataTable no-footer" role="grid">
+            <thead>
+                <tr role="row">
+                    <th class="sorting">Nummer</th>
+                    <th class="sorting">Opsteller</th>
+                    <th class="sorting">Afdeling opsteller</th>
+                    <th class="sorting">Afdeling ontvanger</th>
+                    <th class="sorting">Type RF</th>
+                    <th class="sorting">Datum Opstelling</th>
+                    <th class="sorting">Status</th>
+                    <th class="sorting">Actie</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Formulieren)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Opsteller.Naam</td>
+                        <td>@item.Opsteller.Afdeling.Naam</td>
+                        <td>@item.Ontvanger.Afdeling.Naam</td>
+                        <td>@item.TypeRf</td>
+                        <td>@Html.DisplayFor(m => item.CreatieDatum)</td>
+                        <td>@item.StatusRfEnum</td>
+                        <td>
+                            @Html.ActionLink("Openen", item.TypeRf, new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.datatable').dataTable({
+                sDom: "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+            });
+        });
+    </script>
+}

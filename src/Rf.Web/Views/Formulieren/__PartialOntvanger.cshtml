@@ -1,0 +1,187 @@
+﻿@using Rf.Web.Models
+@using Rf.Web.Extensions
+@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+
+<p class="bg-info"><b>Ontvanger: Q-documenten</b></p>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Is de betrokken werkwijze beschreven in een kwaliteitsdocument?</p>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.RapporteringsFormulier.QualityDocumentNaam, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.RapporteringsFormulier.QualityDocumentNaam, new { @class = "form-control", @rows = 3 })
+                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.QualityDocumentNaam)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsQualityDocumentBeschreven, EnumBooleanModel.Yes)
+                @EnumBooleanModel.Yes.GetDisplayName() -> Noteer de naam van het kwaliteitsdocument
+            </label>
+            @Html.ValidationMessageFor(model => model.RapporteringsFormulier.IsQualityDocumentBeschreven)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        Is bovenstaand kwamiteitsdocument volledig en correct?
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsQualityDocumentVolledig, EnumBooleanModel.Yes)
+                @EnumBooleanModel.Yes.GetDisplayName()
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsQualityDocumentVolledig, EnumBooleanModel.No)
+                @EnumBooleanModel.No.GetDisplayName() -> actie: je reviseert het kwaliteitsdocument
+            </label>
+        </div>
+        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.IsQualityDocumentVolledig)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsQualityDocumentBeschreven, EnumBooleanModel.No)
+                @EnumBooleanModel.No.GetDisplayName() -> Is de opmaak van een nieuw kwaliteitsdocument nodig?
+            </label>
+            @Html.ValidationMessageFor(model => model.RapporteringsFormulier.IsQualityDocumentBeschreven)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsNieuwQualityDocumentNodig, EnumBooleanModel.Yes)
+                @EnumBooleanModel.Yes.GetDisplayName() -> noteer de naam van het nieuwe document
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsNieuwQualityDocumentNodig, EnumBooleanModel.No)
+                @EnumBooleanModel.No.GetDisplayName()
+            </label>
+        </div>
+        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.IsNieuwQualityDocumentNodig)
+    </div>
+</div>
+
+<br />
+<p class="bg-info"><b>Ontvanger: Systematische controles</b></p>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Is er een systematische controle binnen jouw afdeling die deze fout had kunnen voorkomen?</p>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.RapporteringsFormulier.ControleReferentieOntvanger, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.RapporteringsFormulier.ControleReferentieOntvanger, new { @class = "form-control", @rows = 3 })
+                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.ControleReferentieOntvanger)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.SystematischeControleOntvanger, EnumBooleanModel.Yes)
+                @EnumBooleanModel.Yes.GetDisplayName() -> Noteer de referentie van de controle
+            </label>
+            @Html.ValidationMessageFor(model => model.RapporteringsFormulier.SystematischeControleOntvanger)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        Is bovenstaande controle volledig en correct?
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsSystematischeControleVolledig, EnumBooleanModel.Yes)
+                @EnumBooleanModel.Yes.GetDisplayName()
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.IsSystematischeControleVolledig, EnumBooleanModel.No)
+                @EnumBooleanModel.No.GetDisplayName() -> actie: je reviseert de controle
+            </label>
+        </div>
+        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.IsSystematischeControleVolledig)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.SystematischeControleOntvanger, EnumBooleanModel.No)
+                @EnumBooleanModel.No.GetDisplayName() -> Is de opmaak van een nieuwe systematische controle nodig?
+            </label>
+            @Html.ValidationMessageFor(model => model.RapporteringsFormulier.SystematischeControleOntvanger)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.NieuweControle, EnumBooleanModel.Yes)
+                @EnumBooleanModel.Yes.GetDisplayName() -> noteer de naam van het nieuwe document
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(model => model.RapporteringsFormulier.NieuweControle, EnumBooleanModel.No)
+                @EnumBooleanModel.No.GetDisplayName()
+            </label>
+        </div>
+        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.NieuweControle)
+    </div>
+</div>
+
+<br />
+<p class="bg-info"><b>Ontvanger: Corrigerende maatregelen</b></p>
+
+<div class="row">
+    <div class="col-md-12">
+        <label>
+            Omschrijving van de corrigerende maatregelen:
+        </label>
+        @Html.TextAreaFor(model => model.RapporteringsFormulier.Oplossing, new { @class = "form-control", @rows = 5 })
+        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Oplossing)
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.RapporteringsFormulier.Cas, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.ListBoxFor(model => model.SelectedCaIds, new MultiSelectList(Model.ReferenceData.Cas, "Id", "Code"), new { @class = "select2 select2-multiple" })
+                @Html.ValidationMessageFor(model => model.SelectedCaIds)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+
+<h2>Onderscheiding</h2>
+
+@using (Html.BeginForm("CreateOnderscheiding", "Formulieren", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("_PartialOnderscheiding", Model)
+}

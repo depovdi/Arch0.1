@@ -1,0 +1,10 @@
+﻿@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+
+<h2>Klacht m.b.t. Leverancier</h2>
+
+@using (Html.BeginForm("CreateKlachtLeverancier", "Formulieren", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("_PartialKlachtLeverancier", Model)
+}

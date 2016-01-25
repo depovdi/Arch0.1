@@ -1,0 +1,31 @@
+﻿@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            In te vullen door Legal & InsuranceQuality
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.ClaimNummer, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.RapporteringsFormulier.ClaimNummer, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.ClaimNummer)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <input type="submit" class="btn btn-primary" value="Opslaan" />
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+</div>

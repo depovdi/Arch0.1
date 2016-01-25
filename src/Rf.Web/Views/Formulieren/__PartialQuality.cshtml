@@ -1,0 +1,78 @@
+﻿@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+@{
+    const string Default_SelectList_Value = "---- Maak een keuze ----";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            In te vullen door Quality
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.DetailCode, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.SelectedDetailCodeId, new SelectList(Model.ReferenceData.DetailCodes, "Id", "Code", Model.RapporteringsFormulier.DetailCode.Id), Default_SelectList_Value, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SelectedDetailCodeId)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.QualityProcedure, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.SelectedQualityProcedureId, new SelectList(Model.ReferenceData.QualityProcedures, "Id", "Naam", Model.RapporteringsFormulier.QualityProcedure.Id), Default_SelectList_Value, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SelectedQualityProcedureId)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.Rp, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.SelectedRpId, new SelectList(Model.ReferenceData.Rps, "Id", "Naam", Model.RapporteringsFormulier.Rp.Id), Default_SelectList_Value, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SelectedRpId)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.FactuurNummer, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.RapporteringsFormulier.FactuurNummer, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.FactuurNummer)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.StatusRfEnum, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EnumDropDownListFor(model => model.RapporteringsFormulier.StatusRfEnum, Default_SelectList_Value, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RapporteringsFormulier.AfwerkingsDatum, new { @class = "control-label col-sm-3" })
+                    <div class="col-md-9">
+                        <p class="form-control-static">
+                            @Html.DisplayFor(model => model.RapporteringsFormulier.AfwerkingsDatum)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <input type="submit" class="btn btn-primary" value="Opslaan" />
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+</div>

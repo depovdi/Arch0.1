@@ -1,0 +1,10 @@
+﻿@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+
+<h2>Voorstel</h2>
+
+@using (Html.BeginForm("Voorstel", "Formulieren", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("_PartialVoorstel", Model)
+}

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rf.Database.MigrationRunner</id>
+    <version>$version$</version>
+    <title>Rf.Database.MigrationRunner</title>
+    <authors>Tabaknatie N.V.</authors>
+    <owners>Tabaknatie N.V.</owners>
+    <licenseUrl>http://www.tabaknatie.be</licenseUrl>
+    <projectUrl>http://www.tabaknatie.be</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>RF Database migration utility.</description>
+    <releaseNotes>...</releaseNotes>
+  </metadata>
+  <files>
+    <file src="bin\Release\*.dll" target="" />
+    <file src="bin\Release\*.pdb" target="" />
+    <file src="..\packages\EntityFramework.6.1.3\tools\migrate.exe" target="" />
+	<file src="Deploy.ps1" target="" />
+  </files>
+</package>

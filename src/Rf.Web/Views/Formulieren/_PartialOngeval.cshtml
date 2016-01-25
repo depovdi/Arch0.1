@@ -1,0 +1,283 @@
+﻿@using Rf.Web.Models
+@using Rf.Web.Extensions
+@model Rf.Web.ViewModel.RapporteringsFormulierViewModel
+@{
+    const string Default_SelectList_Value = "---- Maak een keuze ----";
+}
+<fieldset>
+    <legend>
+        RF nummer:
+        @Html.DisplayFor(model => model.RapporteringsFormulier.Id, new { @class = "form-control" })
+    </legend>
+
+    @if (ViewData.ModelState.Any(state => state.Value.Errors.Count() > 0))
+    {
+        <div class="text-danger">
+            @Html.ValidationSummary()
+        </div>
+    }
+    @Html.HiddenFor(model => model.RapporteringsFormulier.Id)
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    In te vullen door opsteller
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.Opsteller, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.SelectedOpstellerId, new SelectList(Model.ReferenceData.Personen, "Id", "Naam", Model.RapporteringsFormulier.Opsteller.Id), Default_SelectList_Value, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SelectedOpstellerId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.CreatieDatum, new { @class = "control-label col-sm-3" })
+                            <div class="col-md-9">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.RapporteringsFormulier.CreatieDatum)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="control-label col-md-3">
+                                <label>
+                                    Afdeling Opsteller
+                                </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.RapporteringsFormulier.Opsteller.Afdeling.Naam, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Opsteller.Afdeling.Naam)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.VaststellingsDatum, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.RapporteringsFormulier.VaststellingsDatum, new { htmlAttributes = new { @class = "date-picker form-control" } })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.VaststellingsDatum)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="control-label col-md-3">
+                                <label>
+                                    Type Ongeval
+                                </label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="radio">
+                                    <label>
+                                        @Html.RadioButtonFor(model => model.RapporteringsFormulier.OngevalTypeEnum, EnumOngevalTypeModel.Arbeidsongeval)
+                                        @EnumOngevalTypeModel.Arbeidsongeval.GetDisplayName()
+                                    </label>
+                                    <br />
+                                    <label>
+                                        @Html.RadioButtonFor(model => model.RapporteringsFormulier.OngevalTypeEnum, EnumOngevalTypeModel.Verkeersongeval)
+                                        @EnumOngevalTypeModel.Verkeersongeval.GetDisplayName()
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReferenceData.Klanten, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.ListBoxFor(model => model.SelectedKlantenIds, new MultiSelectList(Model.ReferenceData.Klanten, "Id", "Naam"), new { @class = "select2 select2-multiple" })
+                                @Html.ValidationMessageFor(model => model.ReferenceData.Klanten)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.Dossiernummers, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.RapporteringsFormulier.Dossiernummers, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Dossiernummers)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.Betrokkenen, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.ListBoxFor(model => model.SelectedBetrokkeneIds, new MultiSelectList(Model.ReferenceData.Betrokkenen, "Id", "Naam"), new { @class = "select2 select2-multiple" })
+                                @Html.ValidationMessageFor(model => model.SelectedBetrokkeneIds)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.Voertuig, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.SelectedVoertuigId, new SelectList(Model.ReferenceData.Voertuigen, "Id", "Nummerplaat", "Soort", Model.RapporteringsFormulier.Voertuig.Id), Default_SelectList_Value, new { @class = "select2" })
+                                @Html.ValidationMessageFor(model => model.SelectedVoertuigId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.ExceptieRapporteringsNummer, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.RapporteringsFormulier.ExceptieRapporteringsNummer, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.ExceptieRapporteringsNummer)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.Locaties, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.ListBoxFor(model => model.SelectedLocatieIds, new MultiSelectList(Model.ReferenceData.Locaties, "Id", "Naam"), new { @class = "select2 select2-multiple" })
+                                @Html.ValidationMessageFor(model => model.SelectedLocatieIds)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            Omschrijving van het ongeval:
+                        </label>
+                        @Html.TextAreaFor(model => model.RapporteringsFormulier.Omschrijving, new { @class = "form-control", @rows = 5 })
+                        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Omschrijving)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            Omschrijving van het gevolg:
+                        </label>
+                        @Html.TextAreaFor(model => model.RapporteringsFormulier.Gevolg, new { @class = "form-control", @rows = 5 })
+                        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Gevolg)
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" class="btn btn-primary" value="Opslaan" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    In te vullen door ontvanger: Legal & insurance / human resources
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.ClaimNummer, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.RapporteringsFormulier.ClaimNummer, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.ClaimNummer)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.AoNummer, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.RapporteringsFormulier.AoNummer, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.AoNummer)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.Kost, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.RapporteringsFormulier.Kost, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Kost)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            Eventuele toelichting:
+                        </label>
+                        @Html.TextAreaFor(model => model.RapporteringsFormulier.Opmerking, new { @class = "form-control", @rows = 5 })
+                        @Html.ValidationMessageFor(model => model.RapporteringsFormulier.Opmerking)
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" class="btn btn-primary" value="Opslaan" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    In te vullen door quality
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.DetailCode, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.SelectedDetailCodeId, new SelectList(Model.ReferenceData.DetailCodes, "Id", "Code", Model.RapporteringsFormulier.DetailCode.Id), Default_SelectList_Value, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SelectedDetailCodeId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.StatusRfEnum, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EnumDropDownListFor(model => model.RapporteringsFormulier.StatusRfEnum, Default_SelectList_Value, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RapporteringsFormulier.AfwerkingsDatum, new { @class = "control-label col-sm-3" })
+                            <div class="col-md-9">
+                                <p class="form-control-static">
+                                    @Html.DisplayFor(model => model.RapporteringsFormulier.AfwerkingsDatum)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" class="btn btn-primary" value="Opslaan" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+</fieldset>
